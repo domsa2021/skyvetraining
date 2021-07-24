@@ -3,7 +3,7 @@
     <persistent name="BUS_Office"/>
     <singularAlias>Office</singularAlias>
     <pluralAlias>Offices</pluralAlias>
-    <bizKey expression="Office"/>
+    <bizKey expression="Office - {levelUnit}"/>
     <attributes>
         <text name="levelUnit">
             <displayName>levelUnit</displayName>
