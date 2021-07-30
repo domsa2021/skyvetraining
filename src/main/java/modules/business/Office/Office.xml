@@ -29,5 +29,11 @@
             <displayName>phone</displayName>
             <length>14</length>
         </text>
+        <inverseMany name="officeStaff">
+            <displayName>Staff</displayName>
+            <documentName>Staff</documentName>
+            <referenceName>baseOffice</referenceName>
+        </inverseMany>
     </attributes>
+
 </document>

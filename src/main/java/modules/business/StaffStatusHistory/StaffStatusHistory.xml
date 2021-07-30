@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.skyve.org/xml/document" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="StaffStatusHistory" xsi:schemaLocation="http://www.skyve.org/xml/document ../../../schemas/document.xsd">
+    <persistent name="BUS_StaffStatusHistory"/>
+    <singularAlias>StaffHistoryStatus</singularAlias>
+    <pluralAlias>StaffHistoryStatuses</pluralAlias>
+    <parentDocument>Staff</parentDocument>
+    <bizKey expression="Status - {statusTimeStamp}"/>
+    <attributes>
+         <enum name="status" required="true" documentRef="Staff" attributeRef="status">
+            <displayName>status</displayName>
+        </enum>
+        <timestamp name="statusTimeStamp">
+            <displayName>timestamp</displayName>
+        </timestamp>
+    </attributes>
+</document>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.skyve.org/xml/document" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Staff" xsi:schemaLocation="http://www.skyve.org/xml/document ../../../schemas/document.xsd">
+    <persistent name="BUS_Staff"/>
+    <singularAlias>Staff</singularAlias>
+    <pluralAlias>Staffs</pluralAlias>
+    <bizKey expression="Staff - {code}"/>
+    <attributes>
+        <text name="code" required="true">
+            <displayName>code</displayName>
+            <length>50</length>
+        </text>
+        <text name="name" required="true">
+            <displayName>name</displayName>
+            <length>100</length>
+        </text>
+        <date name="dateOfBirth">
+            <displayName>date of birth</displayName>
+        </date>
+        <text name="age" persistent="false">
+            <displayName>age</displayName>
+            <length>30</length>
+        </text>
+        <association type="aggregation" name="baseOffice"  persistent="true" audited="false" trackChanges="false">
+            <displayName>office</displayName>
+            <documentName>Office</documentName>
+        </association>
+        <geometry name="location">
+            <displayName>location</displayName>
+        </geometry>
+        <image name="photo">
+            <displayName>id photo</displayName>
+        </image>
+        <enum name="status">
+            <displayName>status</displayName>
+            <description>status</description>
+            <defaultValue>inTheOffice</defaultValue>
+            <values>
+                <value code="In" description="In the Office"/>
+                <value code="Out to lunch"/>
+                <value code="Out"/>
+        </values>
+    </enum>
+    <collection name="staffStatusHistory" type="child" persistent="true" >
+            <displayName>staffStatusHistory</displayName>
+            <description>Staff Status History</description>
+            <documentName>StaffStatusHistory</documentName>
+            <minCardinality>0</minCardinality>
+            <ordering><order sort="descending" by="statusTimeStamp"/></ordering>
+        </collection>
+    </attributes>
+</document>

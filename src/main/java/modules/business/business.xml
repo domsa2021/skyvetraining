@@ -4,18 +4,24 @@
     <homeDocument>Office</homeDocument>
     <documents>
         <document ref="Office"/>
+        <document ref="Staff" defaultQueryName="qStaff"/>
+        <document ref="StaffStatusHistory" />
     </documents>
     <roles>
         <role name="Viewer">
             <description><![CDATA[Enough privileges to view Business documents.]]></description>
             <privileges>
                 <document name="Office" permission="_R__C"/>
+                <document name="Staff" permission="_R__C"/>
+                <document name="StaffStatusHistory" permission="_R__C"/>
             </privileges>
         </role>
         <role name="Maintainer">
             <description><![CDATA[Enough privileges to create and edit Business documents.]]></description>
             <privileges>
                 <document name="Office" permission="CRUDC"/>
+                <document name="Staff" permission="CRUDC"/>
+                <document name="StaffStatusHistory" permission="CRUDC"/>
             </privileges>
         </role>
     </roles>
@@ -24,5 +30,25 @@
             <role name="Maintainer"/>
             <role name="Viewer"/>
         </list>
+        <list document="Staff" name="Staffs">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
+        <list document="StaffStatusHistory" name="Staff Status History">
+            <role name="Maintainer"/>
+            <role name="Viewer"/>
+        </list>
     </menu>
-</module>
+    <queries>
+        <query documentName="Staff" name="qStaff">
+            <description><![CDATA[All Staffs]]></description>
+            <columns>
+                <content display="thumbnail" pixelHeight="128" binding="photo" pixelWidth="128"/>
+                <column binding="code" sortOrder="ascending"/>
+                <column binding="name"/>
+                <column binding="dateOfBirth"/>
+                <column binding="status"/>
+            </columns>
+        </query>
+    </queries>
+ </module>

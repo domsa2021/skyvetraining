@@ -26,10 +26,66 @@
 		<property name="suburb" length="200" />
 		<property name="postCode" length="8" />
 		<property name="phone" length="14" />
+		<bag name="officeStaff" inverse="true">
+			<key column="baseOffice_id" />
+			<one-to-many entity-name="businessStaff" />
+		</bag>
 		<filter name="businessOfficeNoneFilter" condition="1=0"/>
 		<filter name="businessOfficeCustomerFilter" condition="bizCustomer=:customerParam"/>
 		<filter name="businessOfficeDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
 		<filter name="businessOfficeUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<class name="modules.business.Staff.StaffExtension" table="BUS_Staff" entity-name="businessStaff">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<property name="code" length="50" />
+		<property name="name" length="100" />
+		<property name="dateOfBirth" type="DateOnly" />
+		<many-to-one name="baseOffice" entity-name="businessOffice" column="baseOffice_id" cascade="persist,save-update,refresh,merge" foreign-key="FK_BUS_Staff_baseOffice"/>
+		<property name="location" />
+		<property name="photo" length="36" />
+		<property name="status" length="12">
+			<type name="Enum">
+				<param name="enumClass">modules.business.domain.Staff$Status</param>
+			</type>
+		</property>
+		<bag name="staffStatusHistory" order-by="statusTimeStamp desc" cascade="all-delete-orphan">
+			<key column="parent_id" />
+			<one-to-many entity-name="businessStaffStatusHistory" />
+		</bag>
+		<filter name="businessStaffNoneFilter" condition="1=0"/>
+		<filter name="businessStaffCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="businessStaffDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="businessStaffUserIdFilter" condition="bizUserId=:userIdParam"/>
+	</class>
+
+	<class name="modules.business.domain.StaffStatusHistory" table="BUS_StaffStatusHistory" entity-name="businessStaffStatusHistory">
+		<id name="bizId" length="36" />
+		<version name="bizVersion" unsaved-value="null" />
+		<property name="bizLock" type="OptimisticLock" length="271" not-null="true" />
+		<property name="bizKey" length="1024" not-null="true" />
+		<property name="bizCustomer" length="50" not-null="true" />
+		<property name="bizFlagComment" length="1024" />
+		<property name="bizDataGroupId" length="36" />
+		<property name="bizUserId" length="36" not-null="true" />
+		<many-to-one name="parent" entity-name="businessStaff" column="parent_id" insert="false" update="false" foreign-key="FK_BUS_StaffStatusHistory_parent" />
+		<property name="status" length="12">
+			<type name="Enum">
+				<param name="enumClass">modules.business.domain.Staff$Status</param>
+			</type>
+		</property>
+		<property name="statusTimeStamp" type="Timestamp" />
+		<filter name="businessStaffStatusHistoryNoneFilter" condition="1=0"/>
+		<filter name="businessStaffStatusHistoryCustomerFilter" condition="bizCustomer=:customerParam"/>
+		<filter name="businessStaffStatusHistoryDataGroupIdFilter" condition="bizDataGroupId=:dataGroupIdParam"/>
+		<filter name="businessStaffStatusHistoryUserIdFilter" condition="bizUserId=:userIdParam"/>
 	</class>
 
 	<filter-def name="businessOfficeNoneFilter" />
@@ -40,6 +96,26 @@
 		<filter-param name="dataGroupIdParam" type="string"/>
 	</filter-def>
 	<filter-def name="businessOfficeUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="businessStaffNoneFilter" />
+	<filter-def name="businessStaffCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="businessStaffDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="businessStaffUserIdFilter">
+		<filter-param name="userIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="businessStaffStatusHistoryNoneFilter" />
+	<filter-def name="businessStaffStatusHistoryCustomerFilter">
+		<filter-param name="customerParam" type="string"/>
+	</filter-def>
+	<filter-def name="businessStaffStatusHistoryDataGroupIdFilter">
+		<filter-param name="dataGroupIdParam" type="string"/>
+	</filter-def>
+	<filter-def name="businessStaffStatusHistoryUserIdFilter">
 		<filter-param name="userIdParam" type="string"/>
 	</filter-def>
 </hibernate-mapping>

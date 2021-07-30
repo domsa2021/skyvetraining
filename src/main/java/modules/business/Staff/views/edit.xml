@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.skyve.org/xml/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="edit"
+      title="Staff" xsi:schemaLocation="http://www.skyve.org/xml/view ../../../../schemas/view.xsd"
+      xmlns:c="http://www.skyve.org/xml/common">
+
+    <hbox>
+        <vbox responsiveWidth="6" border="true" borderTitle="details">
+            <form>
+                <column percentageWidth="30" responsiveWidth="6"/>
+                <column/>
+                <row>
+                    <item>
+                        <default binding="code"/>
+                    </item>
+                </row>
+                <row>
+                    <item>
+                        <default binding="name"/>
+                    </item>
+                </row>
+                <row>
+                    <item required="true">
+                        <textField binding="dateOfBirth">
+                            <onChangedHandlers>
+                                <rerender clientValidation="false">
+                                    <properties>
+                                        <c:property key="update">details</c:property>
+                                    </properties>
+                                </rerender>
+                            </onChangedHandlers>
+                        </textField>
+                    </item>
+                </row>
+            </form>
+            <form widgetId="details">
+                <column percentageWidth="30" responsiveWidth="6"/>
+                <column/>
+                <row>
+                    <item>
+                        <textField binding="age" disabled="true"/>
+                    </item>
+                </row>
+            </form>
+            <form>
+                <column percentageWidth="30" responsiveWidth="6"/>
+                <column/>
+                <row>
+                    <item>
+                        <default binding="baseOffice"/>
+                    </item>
+                </row>
+                <row>
+                    <item>
+                        <contentImage binding="photo"/>
+                    </item>
+                </row>
+                <row>
+                    <item>
+                        <combo binding="status">
+                            <onChangedHandlers>
+                                <rerender clientValidation="false">
+                                    <properties>
+                                        <c:property key="update">statusgrid</c:property>
+                                    </properties>
+                                </rerender>
+                            </onChangedHandlers>
+                        </combo>
+                    </item>
+                </row>
+            </form>
+        </vbox>
+        <form responsiveWidth="6" percentageWidth="60" border="true" borderTitle="map">
+            <column percentageWidth="30" responsiveWidth="6"/>
+            <column/>
+            <row>
+                <item showLabel="false">
+                    <geometryMap binding="location" pixelHeight="390" pixelWidth="450">
+                        <onChangedHandlers/>
+                    </geometryMap>
+                </item>
+            </row>
+        </form>
+    </hbox>
+    <dataGrid binding="staffStatusHistory" showAdd="false" showZoom="false" showRemove="false" widgetId="statusgrid">
+        <boundColumn binding="status"/>
+        <boundColumn binding="statusTimeStamp"/>
+    </dataGrid>
+    <actions>
+        <defaults/>
+    </actions>
+    <newParameters/>
+</view>
