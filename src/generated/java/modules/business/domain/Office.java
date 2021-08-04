@@ -6,10 +6,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import modules.business.Staff.StaffExtension;
+import org.locationtech.jts.geom.Geometry;
 import org.skyve.CORE;
 import org.skyve.domain.messages.DomainException;
 import org.skyve.impl.domain.AbstractPersistentBean;
+import org.skyve.impl.domain.types.jaxb.GeometryMapper;
 
 /**
  * Office
@@ -50,6 +53,12 @@ public class Office extends AbstractPersistentBean {
 	public static final String phonePropertyName = "phone";
 
 	/** @hidden */
+	public static final String memoPropertyName = "memo";
+
+	/** @hidden */
+	public static final String boundaryPropertyName = "boundary";
+
+	/** @hidden */
 	public static final String officeStaffPropertyName = "officeStaff";
 
 	/**
@@ -81,6 +90,16 @@ public class Office extends AbstractPersistentBean {
 	 * phone
 	 **/
 	private String phone;
+
+	/**
+	 * memo
+	 **/
+	private String memo;
+
+	/**
+	 * boundary
+	 **/
+	private Geometry boundary;
 
 	/**
 	 * Staff
@@ -234,6 +253,43 @@ public class Office extends AbstractPersistentBean {
 	public void setPhone(String phone) {
 		preset(phonePropertyName, phone);
 		this.phone = phone;
+	}
+
+	/**
+	 * {@link #memo} accessor.
+	 * @return	The value.
+	 **/
+	public String getMemo() {
+		return memo;
+	}
+
+	/**
+	 * {@link #memo} mutator.
+	 * @param memo	The new value.
+	 **/
+	@XmlElement
+	public void setMemo(String memo) {
+		preset(memoPropertyName, memo);
+		this.memo = memo;
+	}
+
+	/**
+	 * {@link #boundary} accessor.
+	 * @return	The value.
+	 **/
+	public Geometry getBoundary() {
+		return boundary;
+	}
+
+	/**
+	 * {@link #boundary} mutator.
+	 * @param boundary	The new value.
+	 **/
+	@XmlElement
+	@XmlJavaTypeAdapter(GeometryMapper.class)
+	public void setBoundary(Geometry boundary) {
+		preset(boundaryPropertyName, boundary);
+		this.boundary = boundary;
 	}
 
 	/**

@@ -2,6 +2,9 @@
 <module xmlns="http://www.skyve.org/xml/module" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="Business" prototype="true" name="business" xsi:schemaLocation="http://www.skyve.org/xml/module ../../schemas/module.xsd">
     <homeRef>list</homeRef>
     <homeDocument>Office</homeDocument>
+    <jobs>
+        <job name="jRehome" displayName="rehome staffs" className="modules.business.Staff.StaffJobRehome"/>
+    </jobs>
     <documents>
         <document ref="Office"/>
         <document ref="Staff" defaultQueryName="qStaff"/>
@@ -20,7 +23,9 @@
             <description><![CDATA[Enough privileges to create and edit Business documents.]]></description>
             <privileges>
                 <document name="Office" permission="CRUDC"/>
-                <document name="Staff" permission="CRUDC"/>
+                <document name="Staff" permission="CRUDC">
+                    <action name="Home"/>
+                </document>
                 <document name="StaffStatusHistory" permission="CRUDC"/>
             </privileges>
         </role>
@@ -43,7 +48,7 @@
         <query documentName="Staff" name="qStaff">
             <description><![CDATA[All Staffs]]></description>
             <columns>
-                <content display="thumbnail" pixelHeight="128" binding="photo" pixelWidth="128"/>
+                <content display="thumbnail" pixelHeight="32" binding="photo" pixelWidth="32"/>
                 <column binding="code" sortOrder="ascending"/>
                 <column binding="name"/>
                 <column binding="dateOfBirth"/>

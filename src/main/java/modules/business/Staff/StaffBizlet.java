@@ -30,6 +30,9 @@ public class StaffBizlet extends Bizlet<StaffExtension> {
             histo.setParent(bean);
             bean.getStaffStatusHistory().add(histo);
         }
+        if (bean.originalValues().containsKey(Staff.statusPropertyName) && bean.getStatus() != null && bean.getStatus().equals(Staff.Status.inTheOffice) ) {
+            bean.home();
+        }
         super.preRerender(source, bean, webContext);
     }
 }

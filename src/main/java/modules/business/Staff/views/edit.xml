@@ -67,6 +67,11 @@
                         </combo>
                     </item>
                 </row>
+                <row>
+                    <item>
+                        <contentLink binding="resume"/>
+                    </item>
+                </row>
             </form>
         </vbox>
         <form responsiveWidth="6" percentageWidth="60" border="true" borderTitle="map">
@@ -87,6 +92,7 @@
     </dataGrid>
     <actions>
         <defaults/>
+        <action displayName="set home" inActionPanel="true" className="Home"  ></action>
     </actions>
     <newParameters/>
 </view>

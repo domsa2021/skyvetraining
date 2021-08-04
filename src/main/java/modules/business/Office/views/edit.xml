@@ -33,12 +33,23 @@
                 <default binding="phone"/>
             </item>
         </row>
+        <row>
+            <item>
+                <default binding="boundary"/>
+            </item>
+        </row>
+        <row>
+            <item>
+                <default binding="memo"/>
+            </item>
+        </row>
     </form>
     <dataGrid binding="officeStaff">
         <boundColumn binding="name" />
         <boundColumn binding="code" />
         <boundColumn binding="dateOfBirth" />
     </dataGrid>
+    <map modelName="MyMapModel"></map>
     <actions>
         <defaults/>
     </actions>

@@ -29,6 +29,13 @@
             <displayName>phone</displayName>
             <length>14</length>
         </text>
+        <memo name="memo">
+            <displayName>memo</displayName>
+            <index>textual</index>
+        </memo>
+        <geometry name="boundary">
+            <displayName>boundary</displayName>
+        </geometry>
         <inverseMany name="officeStaff">
             <displayName>Staff</displayName>
             <documentName>Staff</documentName>

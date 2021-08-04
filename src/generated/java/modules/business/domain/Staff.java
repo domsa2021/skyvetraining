@@ -69,6 +69,9 @@ public abstract class Staff extends AbstractPersistentBean {
 	public static final String statusPropertyName = "status";
 
 	/** @hidden */
+	public static final String resumePropertyName = "resume";
+
+	/** @hidden */
 	public static final String staffStatusHistoryPropertyName = "staffStatusHistory";
 
 	/**
@@ -192,6 +195,11 @@ public abstract class Staff extends AbstractPersistentBean {
 	 * status
 	 **/
 	private Status status = Status.inTheOffice;
+
+	/**
+	 * resume
+	 **/
+	private String resume;
 
 	/**
 	 * staffStatusHistory
@@ -398,6 +406,24 @@ public abstract class Staff extends AbstractPersistentBean {
 	public void setStatus(Status status) {
 		preset(statusPropertyName, status);
 		this.status = status;
+	}
+
+	/**
+	 * {@link #resume} accessor.
+	 * @return	The value.
+	 **/
+	public String getResume() {
+		return resume;
+	}
+
+	/**
+	 * {@link #resume} mutator.
+	 * @param resume	The new value.
+	 **/
+	@XmlElement
+	public void setResume(String resume) {
+		preset(resumePropertyName, resume);
+		this.resume = resume;
 	}
 
 	/**

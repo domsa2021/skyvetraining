@@ -27,8 +27,8 @@
         <geometry name="location">
             <displayName>location</displayName>
         </geometry>
-        <image name="photo">
-            <displayName>id photo</displayName>
+        <image name="photo" >
+            <displayName >id photo</displayName>
         </image>
         <enum name="status">
             <displayName>status</displayName>
@@ -38,14 +38,17 @@
                 <value code="In" description="In the Office"/>
                 <value code="Out to lunch"/>
                 <value code="Out"/>
-        </values>
-    </enum>
-    <collection name="staffStatusHistory" type="child" persistent="true" >
-            <displayName>staffStatusHistory</displayName>
-            <description>Staff Status History</description>
-            <documentName>StaffStatusHistory</documentName>
-            <minCardinality>0</minCardinality>
-            <ordering><order sort="descending" by="statusTimeStamp"/></ordering>
+            </values>
+        </enum>
+        <content name="resume" persistent="true">
+            <displayName>resume</displayName>
+        </content>
+        <collection name="staffStatusHistory" type="child" persistent="true" >
+                <displayName>staffStatusHistory</displayName>
+                <description>Staff Status History</description>
+                <documentName>StaffStatusHistory</documentName>
+                <minCardinality>0</minCardinality>
+                <ordering><order sort="descending" by="statusTimeStamp"/></ordering>
         </collection>
     </attributes>
 </document>
