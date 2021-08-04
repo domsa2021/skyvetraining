@@ -10,6 +10,7 @@ public class Home implements ServerSideAction<StaffExtension> {
 
     @Override
     public ServerSideActionResult<StaffExtension> execute(StaffExtension staff, WebContext webContext) throws Exception {
+        // comment
         staff.home();
         return new ServerSideActionResult<>(staff);
     }
